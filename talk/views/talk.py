@@ -1,7 +1,8 @@
 from flask import Blueprint
 from flask import jsonify
 
-from talk.models import talk2
+#from talk.models import marimite
+from talk.models.marimite_responder import MarimiteResponder
 
 talk = Blueprint('talk', __name__)
 
@@ -18,7 +19,8 @@ def hello2():
 
 @talk.route("/talk2")
 def hello3():
-    message = talk2.talk()
+    responder = MarimiteResponder()
+    message = responder.talk()
     result = {'message': message}
     return jsonify(result)
 
