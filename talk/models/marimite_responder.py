@@ -31,7 +31,7 @@ class MarimiteResponder(AbstractResponder):
             cursor.execute('select sum(frequency) from markov_chain_trigram where account_id = %s and token1 = %s',
                            [1, token1_id])
             sum_row = cursor.fetchone()
-            if sum_row == None:
+            if sum_row is None:
                 return text
             total_frequency = sum_row[0]
             cursor.execute(
@@ -59,7 +59,7 @@ class MarimiteResponder(AbstractResponder):
                     'select sum(frequency) from markov_chain_trigram where account_id = %s and token1 = %s and token2 = %s',
                     [1, token1_id, token2_id])
                 sum_row = cursor.fetchone()
-                if sum_row == None:
+                if sum_row is None:
                     break
                 total_frequency = sum_row[0]
                 cursor.execute(
@@ -83,13 +83,13 @@ class MarimiteResponder(AbstractResponder):
                     break
                 text += str(token)
         except Exception as e:
-            if conn != None:
+            if conn is not None:
                 conn.rollback()
             raise e
         finally:
-            if cursor != None:
+            if cursor is not None:
                 cursor.close()
-            if conn != None:
+            if conn is not None:
                 conn.close()
 
         return text
