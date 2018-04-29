@@ -1,7 +1,6 @@
 from flask import Blueprint
 from flask import jsonify
 
-#from talk.models import marimite
 from talk.models.marimite_responder import MarimiteResponder
 
 talk = Blueprint('talk', __name__)

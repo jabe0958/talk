@@ -1,9 +1,6 @@
 #!/usr/bin/env
 
-print("__name__ : %s" % __name__)
-
 from .abstract_responder import AbstractResponder
-#from abstract_responder import AbstractResponder
 import random
 import mysql.connector
 
