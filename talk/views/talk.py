@@ -33,8 +33,25 @@ def getResponder():
         responders.append(MarimiteResponder())
         responders.append(PptpResponder())
     
-    res_num = len(responders)
-    idx = random.randint(0, res_num - 1)
-    
+    borders = getattr(g, "_responder_borders", None)
+    if borders is None:
+        borders = []
+        borders.append(80)
+        borders.append(20 + sum(borders))
+
+    borders_sum = getattr(g, "_responder_borders_sum", None)
+    if borders_sum is None:
+        borders_sum = borders[len(borders) - 1]
+
+    pos = random.randint(0, borders_sum -1)
+    idx = 0
+    pre_border = 0
+    print("[pos] %s" % (pos))
+    for i, border in enumerate(borders):
+        print("[i] %s, [border] %s" % (i, border))
+        idx = i
+        if pre_border <= pos and pos < border:
+            break
+    print("[idx] %s" % (idx)) 
     return responders[idx]
 
